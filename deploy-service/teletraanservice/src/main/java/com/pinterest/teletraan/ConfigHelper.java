@@ -17,6 +17,7 @@ package com.pinterest.teletraan;
 
 
 import com.pinterest.deployservice.db.DBAgentDAOImpl;
+import com.pinterest.deployservice.db.DBAgentCountDAOImpl;
 import com.pinterest.deployservice.db.DBAgentErrorDAOImpl;
 import com.pinterest.deployservice.db.DBBuildDAOImpl;
 import com.pinterest.deployservice.db.DBConfigHistoryDAOImpl;
@@ -119,6 +120,7 @@ public class ConfigHelper {
         context.setDeployConstraintDAO(new DBDeployConstraintDAOImpl(dataSource));
         context.setGroupDAO(new DBGroupDAOImpl(dataSource));
         context.setAgentDAO(new DBAgentDAOImpl(dataSource));
+        context.setAgentCountDAO(new DBAgentCountDAOImpl(dataSource));
         context.setAgentErrorDAO(new DBAgentErrorDAOImpl(dataSource));
 
         context.setTagDAO(new DBTagDAOImpl(dataSource));
@@ -192,6 +194,8 @@ public class ConfigHelper {
 
         context.setDeployBoardUrlPrefix(configuration.getSystemFactory().getDashboardUrl());
         context.setChangeFeedUrl(configuration.getSystemFactory().getChangeFeedUrl());
+        // Only applies to Teletraan agent service 
+        context.setAgentCountCacheTtl(configuration.getSystemFactory().getAgentCountCacheTtl());
         return context;
     }
 

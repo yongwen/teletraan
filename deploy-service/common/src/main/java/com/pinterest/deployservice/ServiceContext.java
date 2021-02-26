@@ -19,6 +19,7 @@ package com.pinterest.deployservice;
 import com.pinterest.deployservice.buildtags.BuildTagsManager;
 import com.pinterest.deployservice.chat.ChatManager;
 import com.pinterest.deployservice.dao.AgentDAO;
+import com.pinterest.deployservice.dao.AgentCountDAO;
 import com.pinterest.deployservice.dao.AgentErrorDAO;
 import com.pinterest.deployservice.dao.BuildDAO;
 import com.pinterest.deployservice.dao.ConfigHistoryDAO;
@@ -57,6 +58,7 @@ public class ServiceContext {
     private BasicDataSource dataSource;
     private BuildDAO buildDAO;
     private AgentDAO agentDAO;
+    private AgentCountDAO agentCountDAO;
     private AgentErrorDAO agentErrorDAO;
     private DeployDAO deployDAO;
     private EnvironDAO environDAO;
@@ -98,7 +100,7 @@ public class ServiceContext {
     private String jenkinsUrl;
     private String jenkinsRemoteToken;
     private List<PingRequestValidator> pingRequestValidators;
-
+    private Long agentCountCacheTtl;
     public Allowlist getBuildAllowlist() {
         return buildAllowlist;
     }
@@ -129,6 +131,14 @@ public class ServiceContext {
 
     public void setAgentDAO(AgentDAO agentDAO) {
         this.agentDAO = agentDAO;
+    }
+
+    public AgentCountDAO getAgentCountDAO() {
+        return agentCountDAO;
+    }
+
+    public void setAgentCountDAO(AgentCountDAO agentCountDAO) {
+        this.agentCountDAO = agentCountDAO;
     }
 
     public AgentErrorDAO getAgentErrorDAO() {
@@ -429,4 +439,13 @@ public class ServiceContext {
         List<PingRequestValidator> pingRequestValidators) {
         this.pingRequestValidators = pingRequestValidators;
     }
+
+    public Long getAgentCountCacheTtl() {
+        return agentCountCacheTtl;
+    }
+
+    public void setAgentCountCacheTtl(Long agentCountCacheTttl) {
+        this.agentCountCacheTtl = agentCountCacheTttl;
+    }
+
 }

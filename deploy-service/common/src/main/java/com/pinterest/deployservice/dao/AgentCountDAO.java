@@ -13,24 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.pinterest.deployservice.bean;
+package com.pinterest.deployservice.dao;
 
-/**
- * DEFAULT:
- *      Default stage type (Production)
- * PRODUCTION:
- *      Production stage type
- * CONTROL:
- *      Control stage type
- * CANARY:
- *      Canary stage type
-* LATEST:
- *      LATEST stage type
- */
-public enum EnvType {
-    DEFAULT,
-    PRODUCTION,
-    CONTROL,
-    CANARY,
-    LATEST;
+import com.pinterest.deployservice.bean.AgentCountBean;
+
+public interface AgentCountDAO {
+    AgentCountBean get(String envId) throws Exception;
+    void insertOrUpdate(AgentCountBean agentCountBean) throws Exception;
+    void delete(String envId) throws Exception;
 }
